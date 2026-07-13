@@ -1304,7 +1304,8 @@
     .hero .badge { display: flex; width: max-content; max-width: 100%; margin-inline: auto; font-size: 0.58rem; letter-spacing: 0.06em; padding: 8px 13px; white-space: nowrap; }
     .cmp-grid { gap: 30px; }
     .cmp-left .sub { max-width: none; }
-    .dash3d, .reveal.in .dash3d { transform: none !important; opacity: 1; }
+    .dash3d, .reveal.in .dash3d { transform: perspective(800px) rotateX(7deg) scale(0.96) !important; opacity: 1; }
+    .dash3d .dm { pointer-events: none; box-shadow: 0 26px 50px -30px rgba(22, 22, 22, 0.45); }
     .dm-stat, .dm-chart, .reveal.in .dm-stat, .reveal.in .dm-chart { transform: none !important; box-shadow: none; }
     .dm-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); align-content: start; }
     .sys-block { padding: 26px 20px 30px; }
@@ -1439,14 +1440,14 @@
       <button class="nav-burger" type="button" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </div>
-  <div class="mobile-menu">
+</nav>
+<div class="mobile-menu">
       <a href="benefits.html">Benefits</a>
       <a href="about.html">About</a>
       <a href="portfolio.html" class="active">Portfolio</a>
       <a href="faq.html">FAQ</a>
       <a href="contact.html">Contact</a>
-  </div>
-</nav>
+</div>
 <header class="hero">
   <div class="wrap">
     <h1>Our <span class="hl">portfolio</span>.</h1>
