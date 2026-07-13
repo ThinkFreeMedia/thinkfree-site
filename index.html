@@ -175,7 +175,7 @@
   .nav-inner { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 14px 24px; max-width: 1120px; margin: 0 auto; }
   .nav-inner .brand { justify-self: start; }
   .nav-cta { justify-self: end; }
-  .brand { display: flex; align-items: baseline; gap: 9px; text-decoration: none; color: var(--wine); font-family: 'Sora', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: -0.02em; }
+  .brand { display: flex; align-items: baseline; gap: 9px; text-decoration: none; color: var(--wine); font-family: 'Sora', sans-serif; font-weight: 700; font-size: 1rem; letter-spacing: -0.02em; white-space: nowrap; }
   :root[data-theme="dark"] .brand { color: var(--cream); }
   @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .brand { color: var(--cream); } }
   .brand .psi { font-size: 1.3rem; line-height: 1; display: inline-block; transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1); }
@@ -202,7 +202,10 @@
   .nav-open .nav-burger span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
   .mobile-menu { display: none; }
   @media (max-width: 760px) {
+    .nav-inner { display: flex; justify-content: space-between; }
+    .brand { font-size: 0.92rem; }
     .nav-links { display: none; }
+    .nav-cta { flex-direction: row-reverse; }
     .nav-burger { display: flex; }
     .nav-cta .btn span { display: none; }
     .nav-cta .btn .chat-ic { display: block; }
@@ -370,10 +373,11 @@
   @keyframes slide { to { transform: translateX(-50%); } }
 
   /* ---------- Tiles / cards ---------- */
-  .tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-  @media (max-width: 900px) { .tiles { grid-template-columns: 1fr 1fr; } }
+  .tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+  @media (max-width: 900px) { .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   @media (max-width: 540px) {
-    .tiles { grid-template-columns: 1fr 1fr; gap: 10px; }
+    .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .tiles-line .tile p { white-space: normal; overflow: visible; }
     .tile { padding: 14px 16px; }
     .tile .big { font-size: 1.35rem; }
     .tile p { font-size: 0.78rem; }
@@ -546,7 +550,7 @@
   .cmp-mini > div:last-child b { color: var(--accent); }
   .cmp-mini span { color: var(--muted); font-size: 0.88rem; }
   .cmp-card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 14px; box-shadow: var(--shadow); width: fit-content; max-width: 100%; justify-self: end; }
-  @media (max-width: 900px) { .cmp-card { justify-self: stretch; max-width: none; } }
+  @media (max-width: 900px) { .cmp-card { justify-self: stretch; max-width: none; width: auto; } }
   .cmp-toggle {
     display: flex; gap: 4px; width: max-content; margin: 0 auto 12px;
     background: rgba(22, 22, 22, 0.05);
@@ -873,6 +877,7 @@
   .db-head { display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; align-items: end; }
   @media (max-width: 820px) { .db-head { grid-template-columns: 1fr; gap: 16px; } }
   .db-side { margin: 0; color: var(--dark-muted); font-size: 0.98rem; text-align: right; justify-self: end; }
+  @media (max-width: 820px) { .db-side { text-align: left; justify-self: start; } }
   .db-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; margin: 36px 0 38px; }
   @media (max-width: 820px) { .db-stats { grid-template-columns: 1fr 1fr; } }
   .db-stats .num { display: block; font-family: 'Sora', sans-serif; font-weight: 800; font-size: clamp(1.7rem, 3.4vw, 2.3rem); letter-spacing: -0.03em; color: var(--cream); font-variant-numeric: tabular-nums; }
@@ -1296,6 +1301,12 @@
 
   /* phone-view polish */
   @media (max-width: 640px) {
+    .hero .badge { display: flex; width: max-content; max-width: 100%; margin-right: auto; font-size: 0.58rem; letter-spacing: 0.06em; padding: 8px 13px; white-space: nowrap; }
+    .cmp-grid { gap: 30px; }
+    .cmp-left .sub { max-width: none; }
+    .dash3d, .reveal.in .dash3d { transform: none !important; opacity: 1; }
+    .dm-stat, .dm-chart, .reveal.in .dm-stat, .reveal.in .dm-chart { transform: none !important; box-shadow: none; }
+    .dm-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); align-content: start; }
     .sys-block { padding: 26px 20px 30px; }
     .sys-copy p { margin: 12px 0 10px; font-size: 0.95rem; }
     .sys-diagram { margin-top: 26px; gap: 14px 12px; }
@@ -1529,7 +1540,7 @@
         <p class="sub">No more searching for hooks or editing tricks. With us, we take care of all of it. You just press record.</p>
         <a class="more-l" href="benefits.html">See the benefits ›</a>
         <div class="cmp-mini">
-          <div><b>≈24 hrs</b><span>handed back to you, every week</span></div>
+          <div><b>≈ 24 hrs</b><span>handed back to you, every week</span></div>
           <div><b>One partner</b><span>from scripts to posting to leads</span></div>
         </div>
       </div>
@@ -1550,7 +1561,7 @@
           <div class="comp-row"><div class="task">Captions</div><div class="val" data-diy="45 min" data-tfm="—">45 min</div></div>
           <div class="comp-row"><div class="task">Filming</div><div class="val" data-diy="5.0 hrs" data-tfm="1.0 hrs">5.0 hrs</div></div>
           <div class="comp-row"><div class="task">Insights tracking</div><div class="val" data-diy="30 min" data-tfm="1.0 hr call">30 min</div></div>
-          <div class="comp-row total"><div class="task">Your time per week</div><div class="val" data-diy="≈25.75 hrs" data-tfm="≈2 hrs">≈25.75 hrs</div></div>
+          <div class="comp-row total"><div class="task">Your time per week</div><div class="val" data-diy="≈ 25.75 hrs" data-tfm="≈ 2 hrs">≈ 25.75 hrs</div></div>
         </div>
         <p class="comp-note">*Based on a business owner averaging 30 videos per month.</p>
       </div>
@@ -1745,7 +1756,7 @@
         </div>
       </div>
     </div>
-    <p class="vs2-result reveal">Result: <span class="rpill wine">≈24 hours saved</span> with <span class="rpill aqua">content that sells</span>.</p>
+    <p class="vs2-result reveal">Result: <span class="rpill wine">≈ 24 hours saved</span> with <span class="rpill aqua">content that sells</span>.</p>
   </div>
 </section>
 
