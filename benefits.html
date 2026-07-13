@@ -193,7 +193,40 @@
   .nav-links a:not(.btn):hover { color: var(--accent); }
   .nav-links a.active { color: var(--accent); }
   .nav-cta .btn { padding: 8px 16px; font-size: 0.8rem; }
-  @media (max-width: 760px) { .nav-links a:not(.btn) { display: none; } }
+  .nav-cta { display: flex; align-items: center; gap: 10px; }
+  .nav-cta .btn .chat-ic { display: none; width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .nav-burger { display: none; width: 42px; height: 42px; border-radius: 10px; border: 1px solid var(--line); background: var(--card); cursor: pointer; padding: 0; flex-direction: column; align-items: center; justify-content: center; gap: 4px; }
+  .nav-burger span { display: block; width: 17px; height: 2px; border-radius: 2px; background: var(--text); transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.2s ease; }
+  .nav-open .nav-burger span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .nav-open .nav-burger span:nth-child(2) { opacity: 0; }
+  .nav-open .nav-burger span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+  .mobile-menu { display: none; }
+  @media (max-width: 760px) {
+    .nav-links { display: none; }
+    .nav-burger { display: flex; }
+    .nav-cta .btn span { display: none; }
+    .nav-cta .btn .chat-ic { display: block; }
+    .nav-cta .btn { padding: 11px 12px; }
+    .mobile-menu {
+      position: fixed; top: 66px; left: 0; right: 0; bottom: 0; z-index: 29;
+      background: var(--bg); padding: 26px 24px; flex-direction: column;
+    }
+    .nav-open .mobile-menu { display: flex; }
+    .mobile-menu a {
+      font-family: 'Sora', sans-serif; font-weight: 700; font-size: 2rem; letter-spacing: -0.02em;
+      color: var(--text); text-decoration: none; padding: 14px 0;
+      opacity: 0; transform: translateY(14px);
+    }
+    .mobile-menu a.active { color: var(--accent); }
+    .nav-open .mobile-menu a { animation: menuIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) both; }
+    .nav-open .mobile-menu a:nth-child(1) { animation-delay: 0.04s; }
+    .nav-open .mobile-menu a:nth-child(2) { animation-delay: 0.1s; }
+    .nav-open .mobile-menu a:nth-child(3) { animation-delay: 0.16s; }
+    .nav-open .mobile-menu a:nth-child(4) { animation-delay: 0.22s; }
+    .nav-open .mobile-menu a:nth-child(5) { animation-delay: 0.28s; }
+    html.nav-open, .nav-open body { overflow: hidden; }
+  }
+  @keyframes menuIn { to { opacity: 1; transform: none; } }
 
   /* ---------- Hero ---------- */
   .hero { padding: 48px 0 72px; text-align: center; position: relative; }
@@ -1261,6 +1294,31 @@
   .sheet .s-total .pos { color: var(--accent); }
   @media (max-width: 860px) { .sheet .s-row { grid-template-columns: 1.3fr 1fr 1fr; } }
 
+  /* phone-view polish */
+  @media (max-width: 640px) {
+    .sys-block { padding: 26px 20px 30px; }
+    .sys-copy p { margin: 12px 0 10px; font-size: 0.95rem; }
+    .sys-diagram { margin-top: 26px; gap: 14px 12px; }
+    .sys-node .icon { width: 42px; height: 42px; }
+    .sys-node span { font-size: 0.76rem; }
+    .cmp-mini { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding-top: 18px; margin-bottom: 26px; align-items: start; }
+    .dm-top { flex-direction: column; gap: 6px; }
+    .dm-links { text-align: left; line-height: 1.8; font-size: 0.6rem; }
+    .dm-top h3 { font-size: 1.2rem; }
+    .dm-stats { gap: 6px; }
+    .dm-stat { padding: 7px 8px; }
+    .dm-stat .v { font-size: 0.88rem; }
+    .dm-stat .l { font-size: 0.46rem; letter-spacing: 0.06em; margin-bottom: 2px; }
+    .dm-chart svg { height: 58px; }
+    .db-stats { gap: 20px 14px; margin: 26px 0 28px; }
+    .db-stats .num { font-size: 1.55rem; }
+    .db-stats .label { font-size: 0.55rem; letter-spacing: 0.08em; margin-top: 4px; }
+  }
+  @media (max-width: 760px) {
+    .foot-grid { grid-template-columns: 1fr 1fr; gap: 28px 20px; }
+    .foot-brand { grid-column: 1 / -1; }
+  }
+
   /* steps band: graphics assemble in sequence after their card lands */
   .steps2 .call-stage { opacity: 0; transform: scale(0.96); transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1), transform 0.55s cubic-bezier(0.22, 1, 0.36, 1); }
   .steps2 .call-avatar { opacity: 0; transform: translate(-50%, -50%) scale(0.5); transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1), transform 0.45s cubic-bezier(0.22, 1, 0.36, 1); }
@@ -1366,8 +1424,16 @@
       <a href="contact.html">Contact</a>
     </div>
     <div class="nav-cta">
-      <a class="btn" href="https://form.typeform.com/to/RnsI8cl7" target="_blank" rel="noopener">Start today</a>
+      <a class="btn" href="https://form.typeform.com/to/RnsI8cl7" target="_blank" rel="noopener" aria-label="Start today"><svg class="chat-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5c-1.6 0-3.1-.4-4.4-1.2L3 20l1.2-5.1A8.5 8.5 0 1 1 21 11.5z"/></svg><span>Start today</span></a>
+      <button class="nav-burger" type="button" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
+  </div>
+  <div class="mobile-menu">
+      <a href="benefits.html" class="active">Benefits</a>
+      <a href="about.html">About</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
   </div>
 </nav>
 <header class="hero hero-tight">
@@ -1631,6 +1697,21 @@
         if (!pending.length) clearInterval(sweepTimer);
       }
       window.addEventListener('scroll', sweep, { passive: true });
+    }
+
+    // Mobile menu
+    var burger = document.querySelector('.nav-burger');
+    if (burger) {
+      burger.addEventListener('click', function () {
+        var open = document.documentElement.classList.toggle('nav-open');
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      document.querySelectorAll('.mobile-menu a').forEach(function (a) {
+        a.addEventListener('click', function () {
+          document.documentElement.classList.remove('nav-open');
+          burger.setAttribute('aria-expanded', 'false');
+        });
+      });
     }
 
     // Work grid: clean thumbnails until clicked, then load the player
