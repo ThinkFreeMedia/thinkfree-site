@@ -125,6 +125,7 @@
   .center { text-align: center; }
   .center .sub { margin-left: auto; margin-right: auto; }
   .sub { color: var(--muted); max-width: 56ch; margin: 16px 0 0; font-size: 1.05rem; }
+  html, body { overflow-x: clip; }
   section { padding: 88px 0; }
   section.flush { padding-top: 0; }
   .sect { padding: 60px 0; position: relative; }
@@ -652,8 +653,14 @@
     padding: 4px 10px; border-radius: 8px; border: 1px solid var(--line); color: var(--muted); background: var(--bg);
   }
   .dm-range span.on { background: var(--wine); border-color: var(--wine); color: var(--cream); }
-  .dm-stats { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; margin-bottom: 14px; }
-  @media (max-width: 900px) { .dm-stats { grid-template-columns: repeat(4, 1fr); } }
+  .dm-stats { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 8px; margin-bottom: 14px; }
+  @media (max-width: 900px) { .dm-stats { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  @media (max-width: 640px) {
+    .dm { padding: 18px 16px; }
+    .dm-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .dm-stat .l { white-space: normal; letter-spacing: 0.07em; }
+    .dm-range { flex-wrap: wrap; }
+  }
   .dm-stat { border: 1px solid var(--line); border-radius: 12px; padding: 9px 11px; background: var(--bg); }
   .dm-stat .l { display: block; color: var(--muted); font-family: 'SF Mono', ui-monospace, monospace; font-size: 0.52rem; text-transform: uppercase; letter-spacing: 0.11em; margin-bottom: 3px; white-space: nowrap; }
   .dm-stat .v { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 1.02rem; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
