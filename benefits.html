@@ -342,6 +342,16 @@
   }
   .wf-play svg { width: 20px; height: 20px; fill: var(--cream); margin-left: 3px; }
   .work-frame[data-vid]:hover .wf-play, .work-frame[data-vid]:focus-visible .wf-play { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  .wf-star {
+    position: absolute; top: 9px; right: 9px; z-index: 2;
+    width: 22px; height: 22px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(6, 20, 17, 0.72); backdrop-filter: blur(4px);
+    font-family: 'Sora', sans-serif; font-weight: 700; font-size: 0.95rem; line-height: 1;
+    color: var(--cream); padding-top: 4px;
+    pointer-events: none;
+  }
+  .work-note { margin: 22px 2px 0; color: var(--muted); font-size: 0.82rem; }
   .work-frame.noimg { background: radial-gradient(ellipse at 50% 20%, rgba(127, 208, 197, 0.14), transparent 60%), #10231f; }
   .work-frame.noimg .wf-play { opacity: 1; transform: translate(-50%, -50%) scale(1); }
   .hb-link { text-decoration: none; display: block; }

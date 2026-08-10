@@ -342,6 +342,16 @@
   }
   .wf-play svg { width: 20px; height: 20px; fill: var(--cream); margin-left: 3px; }
   .work-frame[data-vid]:hover .wf-play, .work-frame[data-vid]:focus-visible .wf-play { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  .wf-star {
+    position: absolute; top: 9px; right: 9px; z-index: 2;
+    width: 22px; height: 22px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(6, 20, 17, 0.72); backdrop-filter: blur(4px);
+    font-family: 'Sora', sans-serif; font-weight: 700; font-size: 0.95rem; line-height: 1;
+    color: var(--cream); padding-top: 4px;
+    pointer-events: none;
+  }
+  .work-note { margin: 22px 2px 0; color: var(--muted); font-size: 0.82rem; }
   .work-frame.noimg { background: radial-gradient(ellipse at 50% 20%, rgba(127, 208, 197, 0.14), transparent 60%), #10231f; }
   .work-frame.noimg .wf-play { opacity: 1; transform: translate(-50%, -50%) scale(1); }
   .hb-link { text-decoration: none; display: block; }
@@ -1461,6 +1471,8 @@
 <section class="sect work-grid-sect">
   <div class="wrap reveal">
     <div class="work-grid" data-stagger>
+      <div class="work-frame" data-wcat="long" data-vid="JPlXWB2DcLU" data-note="1" role="button" tabindex="0" aria-label="Play video"><img loading="lazy" src="https://i.ytimg.com/vi/JPlXWB2DcLU/hqdefault.jpg" alt=""><span class="wf-star" aria-hidden="true">*</span><span class="wf-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
+      <div class="work-frame" data-wcat="long" data-vid="ZvWA1Hl6k8U" data-note="1" role="button" tabindex="0" aria-label="Play video"><img loading="lazy" src="https://i.ytimg.com/vi/ZvWA1Hl6k8U/hqdefault.jpg" alt=""><span class="wf-star" aria-hidden="true">*</span><span class="wf-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
       <div class="work-frame" data-wcat="long" data-vid="d_X6jBhgk2U" role="button" tabindex="0" aria-label="Play video"><img loading="lazy" src="https://i.ytimg.com/vi/d_X6jBhgk2U/hqdefault.jpg" alt=""><span class="wf-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
       <div class="work-frame" data-wcat="long" data-vid="BI2SyJDEmcA" role="button" tabindex="0" aria-label="Play video"><img loading="lazy" src="https://i.ytimg.com/vi/BI2SyJDEmcA/hqdefault.jpg" alt=""><span class="wf-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
       <div class="work-frame" data-wcat="long" data-vid="2cRAp2n_kwE" role="button" tabindex="0" aria-label="Play video"><img loading="lazy" src="https://i.ytimg.com/vi/2cRAp2n_kwE/hqdefault.jpg" alt=""><span class="wf-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
@@ -1493,6 +1505,7 @@
       <div class="work-frame vert" data-wcat="short" data-vid="zblm0vpigyA" hidden role="button" tabindex="0" aria-label="Play video"><img loading="lazy" src="https://i.ytimg.com/vi/zblm0vpigyA/oar2.jpg" alt="" onerror="if(!this.dataset.f){this.dataset.f=1;this.src=this.src.replace('oar2','hqdefault')}else{this.parentElement.classList.add('noimg');this.remove()}"><span class="wf-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
       <div class="work-frame vert" data-wcat="short" data-vid="SSDZ1cvxz0E" hidden role="button" tabindex="0" aria-label="Play video"><img loading="lazy" src="https://i.ytimg.com/vi/SSDZ1cvxz0E/oar2.jpg" alt="" onerror="if(!this.dataset.f){this.dataset.f=1;this.src=this.src.replace('oar2','hqdefault')}else{this.parentElement.classList.add('noimg');this.remove()}"><span class="wf-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span></div>
     </div>
+    <p class="work-note">* Assistant editor on this project. We did not film this.</p>
   </div>
 </section>
 <div class="cta-band">
