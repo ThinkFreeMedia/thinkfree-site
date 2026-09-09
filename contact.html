@@ -1459,15 +1459,32 @@
   .wa-fab {
     position: fixed; right: 20px; bottom: 20px; z-index: 55;
     display: inline-flex; align-items: center; gap: 11px;
-    padding: 12px 18px 12px 14px; border-radius: 999px;
-    background: linear-gradient(180deg, #0d6e66, #094f49);
+    padding: 13px 20px 13px 15px; border-radius: 999px;
+    background: linear-gradient(180deg, #12857b, #0a5b55);
     color: var(--cream); text-decoration: none;
-    box-shadow: 0 16px 34px -14px rgba(9, 79, 73, 0.75);
-    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease;
+    border: 1.5px solid rgba(127, 208, 197, 0.55);
+    box-shadow: 0 18px 40px -12px rgba(9, 79, 73, 0.85), 0 2px 10px rgba(0, 0, 0, 0.12);
+    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease, background 0.25s ease;
     animation: waIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) 1.1s both;
   }
+  .wa-fab::before {
+    content: ""; position: absolute; inset: -3px; border-radius: 999px;
+    border: 2px solid #7fd0c5; pointer-events: none;
+    animation: waPulse 3s cubic-bezier(0.22, 1, 0.36, 1) 2s infinite;
+  }
+  @keyframes waPulse {
+    0%   { transform: scale(1); opacity: 0.7; }
+    60%  { transform: scale(1.14); opacity: 0; }
+    100% { transform: scale(1.14); opacity: 0; }
+  }
+  .wa-fab:hover::before { opacity: 0; }
+  .wa-dot {
+    position: absolute; top: 9px; left: 30px;
+    width: 9px; height: 9px; border-radius: 50%;
+    background: #7fd0c5; border: 2px solid #0a5b55;
+  }
   @keyframes waIn { from { opacity: 0; transform: translateY(18px) scale(0.9); } to { opacity: 1; transform: none; } }
-  .wa-fab:hover { transform: translateY(-3px); box-shadow: 0 22px 42px -14px rgba(9, 79, 73, 0.85); }
+  .wa-fab:hover { transform: translateY(-3px); background: linear-gradient(180deg, #16988c, #0c6b64); box-shadow: 0 26px 48px -12px rgba(9, 79, 73, 0.9); }
   .wa-fab:active { transform: translateY(0) scale(0.98); }
   .wa-ic { width: 26px; height: 26px; flex: none; fill: var(--cream); }
   .wa-copy { display: flex; flex-direction: column; line-height: 1.2; font-family: 'Sora', sans-serif; }
@@ -1477,12 +1494,31 @@
   .cookie-visible .wa-fab { bottom: 96px; }
   /* icon only on phones, and out of the way of the fullscreen menu */
   @media (max-width: 640px) {
-    .wa-fab { right: 16px; bottom: 16px; padding: 14px; gap: 0; }
+    .wa-fab { right: 16px; bottom: 16px; padding: 15px; gap: 0; }
+    .wa-dot { top: 10px; left: 31px; }
     .wa-copy { display: none; }
     .cookie-visible .wa-fab { bottom: 132px; }
   }
   .nav-open .wa-fab { display: none; }
-  @media (prefers-reduced-motion: reduce) { .wa-fab { animation: none; } }
+  @media (prefers-reduced-motion: reduce) { .wa-fab { animation: none; } .wa-fab::before { animation: none; opacity: 0; } }
+
+  .wa-fallback {
+    position: fixed; right: 20px; bottom: 96px; z-index: 56;
+    width: 292px; max-width: calc(100vw - 40px);
+    background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+    padding: 20px 20px 18px; box-shadow: 0 26px 56px -22px rgba(22, 22, 22, 0.45);
+    animation: waIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .wa-fallback b { display: block; font-family: 'Sora', sans-serif; font-size: 1rem; margin-bottom: 7px; }
+  .wa-fallback p { margin: 0 0 15px; font-size: 0.87rem; color: var(--muted); line-height: 1.55; }
+  .wa-fallback .btn { width: 100%; justify-content: center; padding: 10px 16px; font-size: 0.85rem; }
+  .wa-fb-alt { display: block; margin-top: 11px; text-align: center; font-size: 0.8rem; color: var(--muted); }
+  .wa-fb-x {
+    position: absolute; top: 8px; right: 10px; border: 0; background: none; cursor: pointer;
+    font-size: 1.25rem; line-height: 1; color: var(--muted); padding: 4px;
+  }
+  .wa-fb-x:hover { color: var(--text); }
+  @media (max-width: 640px) { .wa-fallback { right: 16px; bottom: 88px; } }
 
   /* legal pages */
   .legal { max-width: 68ch; margin: 0 auto; }
@@ -1630,7 +1666,8 @@
     </div>
   </div>
 </footer>
-<a class="wa-fab" href="https://wa.me/393520776234?text=Hi%20Jack%2C%20I%20found%20Think%20Free%20Media%20through%20thinkfree.xyz.%20I%27d%20like%20to%20know%20more%20about%20your%20content%20system." target="_blank" rel="noopener" aria-label="Message our founder on WhatsApp for an instant response"><svg class="wa-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg><span class="wa-copy"><b>Instant response</b><span>from our founder</span></span></a>
+<a class="wa-fab" href="https://wa.me/393520776234?text=Hi%20Jack%2C%20I%20found%20Think%20Free%20Media%20through%20thinkfree.xyz.%20I%27d%20like%20to%20know%20more%20about%20your%20content%20system." target="_blank" rel="noopener" aria-label="Message our founder on WhatsApp for an instant response"><svg class="wa-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg><span class="wa-dot" aria-hidden="true"></span><span class="wa-copy"><b>Instant response</b><span>from our founder</span></span></a>
+<div class="wa-fallback" id="waFallback" role="dialog" aria-label="WhatsApp alternative" hidden><button type="button" class="wa-fb-x" id="waFbClose" aria-label="Close">&times;</button><b>WhatsApp not opening?</b><p>No problem. Tell us about your brand instead and we will come straight back to you.</p><a class="btn" href="https://form.typeform.com/to/RnsI8cl7" target="_blank" rel="noopener">Tell us about your brand</a><a class="wa-fb-alt" href="https://wa.me/393520776234?text=Hi%20Jack%2C%20I%20found%20Think%20Free%20Media%20through%20thinkfree.xyz.%20I%27d%20like%20to%20know%20more%20about%20your%20content%20system." target="_blank" rel="noopener">or try WhatsApp Web</a></div>
 <div class="cookie-bar" id="cookieBar" role="dialog" aria-live="polite" aria-label="Cookie choice" hidden>
   <p>We use one analytics cookie to count visits. Nothing else, and nothing personal. <a href="privacy.html">Privacy policy</a></p>
   <div class="cookie-btns">
@@ -1720,6 +1757,44 @@
       }
       window.addEventListener('scroll', sweep, { passive: true });
     }
+
+    // WhatsApp: try the app first, catch anyone it fails for
+    (function () {
+      var fab = document.querySelector('.wa-fab');
+      var card = document.getElementById('waFallback');
+      if (!fab || !card) return;
+      var APP = 'whatsapp://send?phone=393520776234&text=Hi%20Jack%2C%20I%20found%20Think%20Free%20Media%20through%20thinkfree.xyz.%20I%27d%20like%20to%20know%20more%20about%20your%20content%20system.';
+      var shown = false;
+
+      document.getElementById('waFbClose').addEventListener('click', function () { card.hidden = true; });
+
+      function showCard() {
+        if (shown) return;
+        shown = true;
+        card.hidden = false;
+      }
+
+      fab.addEventListener('click', function (e) {
+        var isPhone = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+        var leftPage = false;
+        function away() { leftPage = true; }
+        document.addEventListener('visibilitychange', away);
+        window.addEventListener('blur', away);
+
+        if (isPhone) {
+          // straight into the app, no interstitial tap
+          e.preventDefault();
+          window.location.href = APP;
+        }
+        // desktop keeps the normal wa.me link opening in a new tab
+
+        setTimeout(function () {
+          document.removeEventListener('visibilitychange', away);
+          window.removeEventListener('blur', away);
+          if (!leftPage) showCard();
+        }, isPhone ? 1600 : 2500);
+      });
+    })();
 
     // Cookie consent, gating analytics
     (function () {
